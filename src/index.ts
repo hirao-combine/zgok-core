@@ -86,3 +86,5 @@ export function deleteFunction<Req, Res>({
 } {
   return { method: "delete", req, res };
 }
+
+export { zgokDate } from "./utils";

@@ -57,5 +57,5 @@ export declare function deleteFunction<Req, Res>({ req, res, }: {
     req: Req;
     res: Res;
 };
-export {};
+export { zgokDate } from "./utils";
 //# sourceMappingURL=index.d.ts.map

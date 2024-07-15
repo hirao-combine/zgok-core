@@ -1,7 +1,7 @@
 {
   "name": "@zgok-api/zgok-core",
   "description": "zgok-api is an API developed in TypeScript for both front-end and back-end, ensuring safe request and response code through schema definitions using zod.",
-  "version": "0.0.15",
+  "version": "0.0.16",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
@@ -16,6 +16,10 @@
     "prettier": "^3.2.5",
     "ts-jest": "^29.1.2",
     "typescript": "^5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hirao-combine/zgok-core.git"
   },
   "author": "hirao-combine",
   "license": "MIT"
