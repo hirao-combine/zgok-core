@@ -1,7 +1,7 @@
 {
   "name": "@zgok-api/zgok-core",
   "description": "zgok-api is an API developed in TypeScript for both front-end and back-end, ensuring safe request and response code through schema definitions using zod.",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "main": "lib/index.js",
   "scripts": {
     "build": "tsc",
