@@ -12,7 +12,7 @@ You can use symlinks or submodules.
 
 ```typescript
 import { z } from "zod";
-import { postFunction, getFunction, patchFunction } from "zgok-core";
+import { postFunction, getFunction, patchFunction } from "@zgok-api/zgok-core";
 
 export const SampleSchema = {
   dir1: {
@@ -48,7 +48,7 @@ This code creates a route for POST: /api/zgokExpress/dir1/hoge1.
 
 ```typescript
 const router = express.Router();
-import { ZgokExpress } from "@combine-navi/zgok-express";
+import { ZgokExpress } from "@zgok-api/zgok-express";
 
 const zgokExpress = ZgokExpress(SampleSchema);
 router.use(
@@ -69,7 +69,7 @@ zgok-axios generates functions from zgokSchema to handle axios processes.
 Both requests and responses are validated by zod.
 
 ```typescript
-import { ZgokAxios } from "zgok-axios";
+import { ZgokAxios } from "@zgok-api/zgok-axios";
 
 export const zgokAxios = ZgokAxios(
   Axios.create({ baseURL: "http://localhost:3000/base" }),
