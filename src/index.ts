@@ -2,11 +2,6 @@ import { z } from "zod";
 
 type Methods = "get" | "post" | "patch" | "put" | "delete";
 
-export type ZgokMethod<Schema extends { req: any; res: any }> = {
-  method: Methods;
-  req: Schema["req"] extends z.ZodType<any> ? z.infer<Schema["req"]> : never;
-  res: Schema["res"] extends z.ZodType<any> ? z.infer<Schema["res"]> : never;
-};
 export type ZgokConfig = {
   [namespace: string]: {
     [method: string]: {
@@ -16,75 +11,31 @@ export type ZgokConfig = {
     };
   };
 };
-
-export function getFunction<Req, Res>({
-  req,
-  res,
-}: {
-  req: Req;
-  res: Res;
-}): {
-  method: Methods;
-  req: Req;
-  res: Res;
-} {
-  return { method: "get", req, res };
+function createFunction(method: Methods) {
+  return function <Req extends z.ZodType<any>, Res extends z.ZodType<any>>({
+    req,
+    res,
+  }: {
+    req: Req;
+    res: Res;
+  }): { method: Methods; req: Req; res: Res } {
+    return { method, req, res };
+  };
 }
 
-export function postFunction<Req, Res>({
-  req,
-  res,
-}: {
-  req: Req;
-  res: Res;
-}): {
-  method: Methods;
-  req: Req;
-  res: Res;
-} {
-  return { method: "post", req, res };
-}
+export const getFunction = createFunction("get");
+export const postFunction = createFunction("post");
+export const patchFunction = createFunction("patch");
+export const putFunction = createFunction("put");
+export const deleteFunction = createFunction("delete");
 
-export function patchFunction<Req, Res>({
-  req,
-  res,
-}: {
-  req: Req;
-  res: Res;
-}): {
+/** リクエスト処理の引数・戻り値の型 */
+export type ZgokMethod<
+  Schema extends { req: z.ZodType<any>; res: z.ZodType<any> },
+> = {
   method: Methods;
-  req: Req;
-  res: Res;
-} {
-  return { method: "patch", req, res };
-}
-
-export function putFunction<Req, Res>({
-  req,
-  res,
-}: {
-  req: Req;
-  res: Res;
-}): {
-  method: Methods;
-  req: Req;
-  res: Res;
-} {
-  return { method: "put", req, res };
-}
-
-export function deleteFunction<Req, Res>({
-  req,
-  res,
-}: {
-  req: Req;
-  res: Res;
-}): {
-  method: Methods;
-  req: Req;
-  res: Res;
-} {
-  return { method: "delete", req, res };
-}
+  req: z.infer<Schema["req"]>;
+  res: z.infer<Schema["res"]>;
+};
 
 export { zgokDate } from "./utils";

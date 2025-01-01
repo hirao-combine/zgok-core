@@ -11,25 +11,37 @@ import {
 
 describe("functions", () => {
   it("test get", () => {
-    const f = getFunction({ req: { name: "string" }, res: { id: "number" } });
+    const f = getFunction({
+      req: z.object({ name: z.string() }),
+      res: z.object({ id: z.number() }),
+    });
     expect(f.method).toEqual("get");
   });
   it("test post", () => {
-    const f = postFunction({ req: { name: "string" }, res: { id: "number" } });
+    const f = postFunction({
+      req: z.object({ name: z.string() }),
+      res: z.object({ id: z.number() }),
+    });
     expect(f.method).toEqual("post");
   });
   it("test patch", () => {
-    const f = patchFunction({ req: { name: "string" }, res: { id: "number" } });
+    const f = patchFunction({
+      req: z.object({ name: z.string() }),
+      res: z.object({ id: z.number() }),
+    });
     expect(f.method).toEqual("patch");
   });
   it("test put", () => {
-    const f = putFunction({ req: { name: "string" }, res: { id: "number" } });
+    const f = putFunction({
+      req: z.object({ name: z.string() }),
+      res: z.object({ id: z.number() }),
+    });
     expect(f.method).toEqual("put");
   });
   it("test delete", () => {
     const f = deleteFunction({
-      req: { name: "string" },
-      res: { id: "number" },
+      req: z.object({ name: z.string() }),
+      res: z.object({ id: z.number() }),
     });
     expect(f.method).toEqual("delete");
   });
@@ -56,6 +68,7 @@ describe("checker", () => {
           req: z.object({ id: z.number() }),
           res: z.object({ name1: z.string() }),
         }),
+        // get2: getFunction({}),
         post: postFunction({
           req: z.object({ id: z.number() }),
           res: z.object({ name1: z.string() }),
