@@ -6,7 +6,7 @@ npm install --save @zgok-api/zgok-core zod
 or
 yarn add @zgok-api/zgok-core zod
 
-`zod` is a peerDependency, so install it in your project. The same `zod` instance is then shared with zgok-express / zgok-axios.
+`zod` (v4) is a peerDependency, so install it in your project. The same `zod` instance is then shared with zgok-express / zgok-axios.
 
 ## Creating Schemas
 
